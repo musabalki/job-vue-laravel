@@ -1,9 +1,29 @@
 <template>
-    Detail {{ id }}
+    <div class="bg-white p-6">
+        <h1 class="text-main text-3xl font-semibold mb-3">{{ detail.title }}</h1>
+        <div class="space-x-2 mb-2">
+            <span class="font-medium text-xs bg-green-100 text-green-500 px-3 py-1 rounded-lg inline-block">{{ detail.salary }}</span> 
+        <span class=" font-medium text-xs bg-amber-100 text-amber-500 px-3 py-1 rounded-lg inline-block">Freelance</span>
+        </div>
+        <h2 class="font-semibold">Requirements</h2>
+        <div v-html="detail.description"></div>
+        <h2 class="font-semibold">What We Offer</h2>
+        <div v-html="detail.description2"></div>
+    </div>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import {useJobStore} from "../store/job.js"
+
 const route = useRoute()
 const {id} = route.params;
+const store = useJobStore();
+
+const {getDetailData} = store;
+getDetailData(id)
+
+const {detail} = storeToRefs(store)
 
 </script>

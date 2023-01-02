@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "title": "React Developer",
+        "slug": "react-developer",
+        "description": "<li>\n                        1+ years of software engineering and hands-on programming experience in Front-end Development\n                      </li>\n                      <li>\n                          Experience in architecting component libraries, building reusable UI components Experience with RESTful APIs and Services\n                      </li>\n                      <li>\n                          Strong experience with React state management\n                      </li>\n                      <li>\n                          HTML, CSS, JS expertise is required.\n                      </li>\n                      <li>\n                          Experience with ESbuild, CDN’s, GraphQL and Relay, Apollo\n                      </li>\n                      <li>Knowledge of Git</li>\n                      <li>Experience in responsive web design</li>",
+        "description2": "<ul class=\"list-disc list-outside ml-4 mb-4\">\n                      <li>100% Remote work</li>\n                      <li>Dynamic and friendly work environment</li>\n                      <li>Happy hours, team-bonding events</li>\n                  </ul>",
+        "image": "https://via.placeholder.com/150",
+        "type": 3,
+        "salary": "$65k-$85k/yr",
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "id": 2,
+        "title": "Android Developer",
+        "slug": "android-developer",
+        "description": "<li>\n                        1+ years of software engineering and hands-on programming experience in Front-end Development\n                      </li>\n                      <li>\n                          Experience in architecting component libraries, building reusable UI components Experience with RESTful APIs and Services\n                      </li>\n                      <li>\n                          Strong experience with React state management\n                      </li>\n                      <li>\n                          HTML, CSS, JS expertise is required.\n                      </li>\n                      <li>\n                          Experience with ESbuild, CDN’s, GraphQL and Relay, Apollo\n                      </li>\n                      <li>Knowledge of Git</li>\n                      <li>Experience in responsive web design</li>",
+        "description2": "<ul class=\"list-disc list-outside ml-4 mb-4\">\n                      <li>100% Remote work</li>\n                      <li>Dynamic and friendly work environment</li>\n                      <li>Happy hours, team-bonding events</li>\n                  </ul>",
+        "image": "https://via.placeholder.com/150",
+        "type": 2,
+        "salary": "$60k-$80k/yr",
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "id": 3,
+        "title": "IOS Developer",
+        "slug": "ios-developer",
+        "image": "https://via.placeholder.com/150",
+        "description": "<li>\n                        1+ years of software engineering and hands-on programming experience in Front-end Development\n                      </li>\n                      <li>\n                          Experience in architecting component libraries, building reusable UI components Experience with RESTful APIs and Services\n                      </li>\n                      <li>\n                          Strong experience with React state management\n                      </li>\n                      <li>\n                          HTML, CSS, JS expertise is required.\n                      </li>\n                      <li>\n                          Experience with ESbuild, CDN’s, GraphQL and Relay, Apollo\n                      </li>\n                      <li>Knowledge of Git</li>\n                      <li>Experience in responsive web design</li>",
+        "description2": "<ul class=\"list-disc list-outside ml-4 mb-4\">\n                      <li>100% Remote work</li>\n                      <li>Dynamic and friendly work environment</li>\n                      <li>Happy hours, team-bonding events</li>\n                  </ul>",
+        "type": 1,
+        "salary": "$75k-$90k/yr",
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+        "id": 4,
+        "title": "Laravel Developer",
+        "slug": "laravel-developer",
+        "image": "https://via.placeholder.com/150",
+        "description": "<li>\n                        1+ years of software engineering and hands-on programming experience in Front-end Development\n                      </li>\n                      <li>\n                          Experience in architecting component libraries, building reusable UI components Experience with RESTful APIs and Services\n                      </li>\n                      <li>\n                          Strong experience with React state management\n                      </li>\n                      <li>\n                          HTML, CSS, JS expertise is required.\n                      </li>\n                      <li>\n                          Experience with ESbuild, CDN’s, GraphQL and Relay, Apollo\n                      </li>\n                      <li>Knowledge of Git</li>\n                      <li>Experience in responsive web design</li>",
+        "description2": "<ul class=\"list-disc list-outside ml-4 mb-4\">\n                      <li>100% Remote work</li>\n                      <li>Dynamic and friendly work environment</li>\n                      <li>Happy hours, team-bonding events</li>\n                  </ul>",
+        "type": 1,
+        "salary": "$75k-$90k/yr",
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    }
+]

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loading" class="text-center">
+    <div v-if="loading && jobs.length==0" class="text-center">
         <span class="loader"></span>
     </div>
     <JobItem v-if="jobs.length>0" v-for="item in jobs" :item ="item" />  
@@ -7,14 +7,14 @@
 <script setup>
 import JobItem from "./JobItem.vue"
 import {useJobStore} from "../store/job.js"
-import { onMounted } from "vue";
+import { onMounted,computed } from "vue";
 import { storeToRefs } from 'pinia'
 
 const { jobs, loading} = storeToRefs(useJobStore())
-const {initialData} = useJobStore();
+const store = useJobStore();
 
-onMounted(()=>{
-    initialData()
+onMounted(async ()=>{
+    await store.getJobs()
 })
 
 </script>
