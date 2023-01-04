@@ -17,15 +17,24 @@ use App\Http\Controllers\ProductController;
 */
 
 
+//Route::resource('products',ProductController::class);
 
 
-Route::resource('products',ProductController::class);
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
+
 Route::get('/products/search/{name}',[ProductController::class,'search']);
+Route::get('/products/{id}',[ProductController::class,'show']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout',[AuthController::class,'logout']);
+    Route::get('/products',[ProductController::class,'index']);
+   Route::post('/products',[ProductController::class,'store']);
+   Route::put('/products/{id}',[ProductController::class,'update']);
+   Route::delete('/products/{id}',[ProductController::class,'delete']);
+});
 
 
-//Route::get('/products',[ProductController::class,'index']);
-//Route::post('/products',[ProductController::class,'store']);
-//Route::get('/products/{id}',[ProductController::class,'show']);
 
 
 //Route::post('/auth/register',[AuthController::class,'createUser']);
