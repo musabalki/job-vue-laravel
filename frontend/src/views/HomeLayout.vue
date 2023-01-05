@@ -6,8 +6,7 @@
             <Skills/>
           </div>
           <div class="col-span-9 space-y-4 ml-5">
-           
-           <router-view></router-view>
+            <router-view></router-view>
           </div>
         </div>
       </div>
@@ -18,6 +17,7 @@
 <script setup>
 import WorkingType from "../components/WorkingType.vue"
 import Skills from "../components/Skills.vue"
+import JobList from "../components/JobList.vue";
 
 
 

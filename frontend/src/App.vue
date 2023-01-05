@@ -1,11 +1,9 @@
 <template>
-  <div class="bg-gray-50 p-6">
+  <div class="bg-gray-50 p-6 min-h-screen">
     <div class="max-w-[1100px] mx-auto">
       <Header/>
-      <HomeLayout/>
-      <footer>
-        FOOTER
-      </footer>
+      <router-view></router-view>
+     
       
     </div>
   </div>
