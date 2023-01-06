@@ -2,12 +2,15 @@
     <div class="mx-auto container mb-4 ">
         <div class="grid grid-cols-12 items-center justify-between">
             <div class="col-span-3 ">
-                <h1 class="text-2xl font-bold text-center">Job</h1>
+                <router-link to="/" class="block text-2xl font-bold text-center">Job</router-link>
                 <span class="text-gray-500 text-sm text-center block">Find job</span>
             </div>
             <div class="col-span-9 flex justify-end items-center ml-5 rounded-lg">
                 <div class="flex justify-center">
-                    <div class="relative inline-block ">
+                    <router-link to="/login" class="mx-2 text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  0">Login</router-link>
+                    <router-link to="/signup" class="text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">Sign Up</router-link>
+                    
+                    <div v-if="0" class="relative inline-block ">
                         <!-- Dropdown toggle button -->
                         <button @click="toggle()"
                             class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
