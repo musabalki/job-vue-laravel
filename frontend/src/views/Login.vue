@@ -13,16 +13,22 @@
                             <div>
                                 <label for="email"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email"
+                                <input v-model="state.email" type="email" name="email" id="email"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="email@email.com">
+                                    <div v-for="error of v$.email.$errors" :key="error.$uid">
+                                    <span class="text-sm text-red-600 font-medium">{{ error.$message }}</span>
+                                </div>
                             </div>
                             <div>
                                 <label for="password"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••"
+                                <input v-model="state.password"  type="password" name="password" id="password" placeholder="••••••••"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
+                                    <div v-for="error of v$.password.$errors" :key="error.$uid">
+                                    <span class="text-sm text-red-600 font-medium">{{ error.$message }}</span>
+                                </div>
+                                </div>
                             <button type="submit"
                                 class="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
                                 in</button>
@@ -40,7 +46,39 @@
 </template>
 
 <script setup>
-    function onSubmit () {
-        console.log("submit")
+import { useAuthStore } from '../store/auth';
+import { reactive,computed,ref } from "vue"
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength,sameAs } from '@vuelidate/validators'
+
+const authStore = useAuthStore();
+
+const loading = computed(()=>authStore.loading)
+
+const state = reactive({
+    email: '',
+    password: '',
+})
+
+
+const rules = computed(()=>{
+   return {
+    email: { required, email },
+    password: { required, minLength: minLength(5) },
+}
+})
+
+
+const v$ = useVuelidate(rules, state)
+
+
+const onSubmit = async () => {
+    const result = await v$.value.$validate();
+    if(result){
+        authStore.login(state);
     }
+}
+
+
+
 </script>
