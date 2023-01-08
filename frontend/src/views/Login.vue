@@ -29,9 +29,15 @@
                                     <span class="text-sm text-red-600 font-medium">{{ error.$message }}</span>
                                 </div>
                                 </div>
-                            <button type="submit"
-                                class="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
-                                in</button>
+                               
+                                <div class="text-red-500 text-sm font-semibold" v-if="authStore.errors">
+                                    {{ authStore.errors }}
+                                </div>
+                                <button :disabled="loading" type="submit"
+                                class="flex justify-center w-full text-white bg-indigo-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                                <div class="loader" v-if="loading"></div>
+                                <span v-else> Sign in</span>
+                            </button>
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                                 Don’t have an account yet? <router-link to="/signup"
                                     class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign
@@ -54,6 +60,7 @@ import { required, email, minLength,sameAs } from '@vuelidate/validators'
 const authStore = useAuthStore();
 
 const loading = computed(()=>authStore.loading)
+const errors = computed(()=>authStore.getErrors)
 
 const state = reactive({
     email: '',

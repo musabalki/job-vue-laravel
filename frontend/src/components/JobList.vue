@@ -9,6 +9,7 @@
         </div>
     </div>
     <JobItem v-if="jobs.length > 0" v-for="item in jobs" :item="item" />
+   
 </template>
 <script setup>
 import JobItem from "./JobItem.vue"

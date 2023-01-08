@@ -7,10 +7,13 @@
             </div>
             <div class="col-span-9 flex justify-end items-center ml-5 rounded-lg">
                 <div class="flex justify-center">
-                    <router-link to="/login" class="mx-2 text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  0">Login</router-link>
-                    <router-link to="/signup" class="text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">Sign Up</router-link>
+
+                    <template v-if="!user">
+                        <router-link to="/login" class="mx-2 text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  0">Login</router-link>
+                        <router-link to="/signup" class="text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">Sign Up</router-link>
+                    </template>
                     
-                    <div v-if="0" class="relative inline-block ">
+                    <div v-if="user" class="relative inline-block ">
                         <!-- Dropdown toggle button -->
                         <button @click="toggle()"
                             class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
@@ -24,7 +27,7 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div :class="data ? null : 'hidden' " class=" absolute right-0 z-20 w-60 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+                        <div :class="user ? null : '' " class=" absolute right-0 z-20 w-60 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
                             <a href="#"
                                 class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
@@ -64,6 +67,7 @@
             </div>
         </div>
     </div>
+
 </template>
 <script setup>
 import {ref,computed,onMounted} from "vue"
@@ -71,8 +75,8 @@ import {useAuthStore} from "../store/auth"
 const data = ref(false);
 const store = useAuthStore();
 
-//const user = computed(()=>store.getAuthData())
-//console.log(user.value)
+const user = computed(()=>store.getToken)
+
 
 
 

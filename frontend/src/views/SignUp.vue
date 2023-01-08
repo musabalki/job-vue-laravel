@@ -50,7 +50,7 @@
                             <button :disabled="loading" type="submit"
                                 class="flex justify-center w-full text-white bg-indigo-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
                                 <div class="loader" v-if="loading"></div>
-                                <span v-else> Sign in</span>
+                                <span v-else> Sign Up</span>
                             </button>
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                                 Already have an account? <router-link to="/login"

@@ -1,7 +1,8 @@
 // stores/counter.js
 import { defineStore } from 'pinia'
 import Jobs from "./data.json"
-
+import axios from "axios"
+import { useAuthStore } from './auth'
 export const useJobStore = defineStore('job', {
     state: () => {
         return {
@@ -32,10 +33,17 @@ export const useJobStore = defineStore('job', {
         },
         async getJobs() {
             this.loading = true;
-            await setTimeout(() => {
-                this.jobs = Jobs
-                this.loading = false;
-            }, 500)
+            const authStore = useAuthStore();
+            try {
+                const res = await axios.get("http://localhost:8000/api/jobs",{headers:{
+                    'Authorization':`Bearer ${authStore.getToken}`
+                }});
+                this.jobs = res.data;
+                
+            } catch (err) {
+                console.log("Error:",err)
+            }
+            this.loading = false;
         },
     },
 })

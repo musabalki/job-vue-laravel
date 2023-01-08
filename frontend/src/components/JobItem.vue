@@ -9,9 +9,9 @@
                 <h1 href="" class="font-medium">{{item.title }}</h1>
                 <span class="text-sm text-gray-400">{{ item.info }}</span>
                 <div class="mt-1">
-                    <span v-if="item.type==1" class=" font-medium text-xs bg-violet-100 text-violet-500 px-3 py-1  rounded-lg inline-block">Full-time</span>
-                    <span v-else-if="item.type==2" class=" font-medium text-xs bg-rose-100 text-rose-500 px-3 py-1  rounded-lg inline-block 	">Part-time</span>
-                    <span v-else-if="item.type==3" class=" font-medium text-xs bg-amber-100 text-amber-500 px-3 py-1  rounded-lg inline-block">Freelance</span>
+                    <span v-if="item.work_type==1" class=" font-medium text-xs bg-violet-100 text-violet-500 px-3 py-1  rounded-lg inline-block">Full-time</span>
+                    <span v-else-if="item.work_type==2" class=" font-medium text-xs bg-rose-100 text-rose-500 px-3 py-1  rounded-lg inline-block 	">Part-time</span>
+                    <span v-else-if="item.work_type==3" class=" font-medium text-xs bg-amber-100 text-amber-500 px-3 py-1  rounded-lg inline-block">Freelance</span>
                     <span class="ml-2 font-medium text-xs bg-green-100 text-green-500 px-3 py-1 rounded-lg inline-block">
                         {{ item.salary }}
                     </span>
