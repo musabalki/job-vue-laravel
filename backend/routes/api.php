@@ -26,8 +26,10 @@ Route::post('/login',[AuthController::class,'login']);
 // Route::get('/products/search/{name}',[ProductController::class,'search']);
 // Route::get('/products/{id}',[ProductController::class,'show']);
 
+Route::get('/jobs',[JobController::class,'index']);
+
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/jobs',[JobController::class,'index']);
+   
     // Route::post('/logout',[AuthController::class,'logout']);
     // Route::get('/products',[ProductController::class,'index']);
     // Route::post('/products',[ProductController::class,'store']);

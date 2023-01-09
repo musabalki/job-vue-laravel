@@ -1,12 +1,13 @@
 <template>
-    <div v-if="loading && jobs.length == 0" class="text-center">
-        <span class="loader"></span>
-    </div>
+    
     <div class="rounded-lg bg-white">
         <div class="flex items-center">
             <i class="pl-4 fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search" class="w-full rounded-lg py-3 px-2 outline-none text-sm">
         </div>
+    </div>
+    <div v-if="loading && jobs.length == 0" class="text-center">
+        <span class="loader"></span>
     </div>
     <JobItem v-if="jobs.length > 0" v-for="item in jobs" :item="item" />
    

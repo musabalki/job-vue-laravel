@@ -2,11 +2,12 @@
 import { defineStore } from 'pinia'
 import Jobs from "./data.json"
 import axios from 'axios'
+import { useToast } from "vue-toastification";
 
 export const useAuthStore = defineStore('authStore', {
     state: () => {
         return {
-            auth:{},
+            auth:JSON.parse(localStorage.getItem('user')) || {},
             savedJobs:[],
             loading: false,
             token:localStorage.getItem('token') || null,
@@ -19,6 +20,9 @@ export const useAuthStore = defineStore('authStore', {
         },
         getErrors(){
             return this.errors
+        },
+        getUser(){
+            return this.auth;
         }
     },
     actions: {
@@ -41,6 +45,7 @@ export const useAuthStore = defineStore('authStore', {
             }
         },
         async login(user){
+            
             this.loading=true;
             this.errors="";
             try{
@@ -49,6 +54,11 @@ export const useAuthStore = defineStore('authStore', {
                 this.loading=false
                 this.token = res.data.token
                 localStorage.setItem('token',res.data.token);
+                localStorage.setItem('user',JSON.stringify(res.data.user));
+                this.router.push('/');
+                const toast = useToast();
+                toast.success("Giriş yapıldı", { timeout: 1500 });
+                console.log(res.data)
                
             }catch(err){
                 console.log("Error:", err.response.data.message)
@@ -57,6 +67,12 @@ export const useAuthStore = defineStore('authStore', {
                 this.errors=err.response.data.message
                 
             }
+        },
+        logout(){
+            const toast = useToast();
+            toast.success("Çıkış yapıldı", { timeout: 1500 });
+            this.auth=""
+            this.token=""
         }
     },
 })

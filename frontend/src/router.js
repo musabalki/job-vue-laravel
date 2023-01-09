@@ -5,6 +5,8 @@ import Login from './views/Login.vue'
 import SignUp from './views/SignUp.vue'
 import Detail from './views/Detail.vue'
 import NotFound from './views/NotFound.vue'
+import Profile from './views/Profile.vue'
+import {useAuthStore} from "./store/auth.js"
 const routes = [
     {
         path: '/',
@@ -34,10 +36,23 @@ const routes = [
         name: 'signup',
         component: SignUp
     },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: ()=>import("../src/views/Profile.vue")
+    },
     { path: '/:pathMatch(.*)*',name:"notfound", component: NotFound }
 ]
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+// GOOD
+router.beforeEach((to, from, next) => {
+    const store = useAuthStore();
+    const token = localStorage.getItem('token')
+
+    if (to.name === 'profile' && !token) next("/")
+    else next()
 })
 export default router

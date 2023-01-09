@@ -89,3 +89,12 @@ const onSubmit = async () => {
 
 
 </script>
+<style scoped>
+.loader{
+    border: 5px solid #ffffffc9;
+    border-radius: 50%;
+    border-top: 5px solid #4a4a4a;
+    width: 20px;
+    height: 20px;
+}
+</style>
