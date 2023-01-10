@@ -6,6 +6,7 @@ import SignUp from './views/SignUp.vue'
 import Detail from './views/Detail.vue'
 import NotFound from './views/NotFound.vue'
 import Profile from './views/Profile.vue'
+import SavedJobs from './views/SavedJobs.vue'
 import {useAuthStore} from "./store/auth.js"
 const routes = [
     {
@@ -40,6 +41,11 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: ()=>import("../src/views/Profile.vue")
+    },
+    {
+        path: '/saved-jobs',
+        name: 'savedjobs',
+        component: SavedJobs
     },
     { path: '/:pathMatch(.*)*',name:"notfound", component: NotFound }
 ]

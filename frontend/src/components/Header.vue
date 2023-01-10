@@ -45,10 +45,10 @@
                                 view profile
                             </router-link>
 
-                            <a href="#"
+                            <router-link to="saved-jobs"
                                 class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 Saved Jobs
-                            </a>
+                            </router-link>
 
                             <a href="#"
                                 class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
