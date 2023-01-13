@@ -6,6 +6,7 @@ import SignUp from './views/SignUp.vue'
 import Detail from './views/Detail.vue'
 import NotFound from './views/NotFound.vue'
 import Profile from './views/Profile.vue'
+import CreateJob from './views/CreateJob.vue'
 import SavedJobs from './views/SavedJobs.vue'
 import {useAuthStore} from "./store/auth.js"
 const routes = [
@@ -31,7 +32,6 @@ const routes = [
         name: 'login',
         component: Login
     },
-    
     {
         path: '/signup',
         name: 'signup',
@@ -46,6 +46,11 @@ const routes = [
         path: '/saved-jobs',
         name: 'savedjobs',
         component: SavedJobs
+    },
+    {
+        path: '/create-job',
+        name: 'createjob',
+        component: CreateJob
     },
     { path: '/:pathMatch(.*)*',name:"notfound", component: NotFound }
 ]

@@ -8,8 +8,15 @@ import { markRaw } from 'vue'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
+
+
 const pinia = createPinia()
 const app = createApp(App)
+app.component('QuillEditor', QuillEditor)
+// Vue.component('QuillEditor', VueQuill.QuillEditor);
 
 pinia.use(({ store }) => {
     store.router = markRaw(router)
