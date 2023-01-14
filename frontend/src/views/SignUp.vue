@@ -69,8 +69,10 @@ import { useAuthStore } from '../store/auth';
 import { reactive,computed,ref } from "vue"
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength,sameAs } from '@vuelidate/validators'
+import {useRouter} from "vue-router"
 
 const authStore = useAuthStore();
+const router = useRouter();
 
 const loading = computed(()=>authStore.loading)
 
@@ -99,6 +101,7 @@ const onSubmit = async () => {
     const result = await v$.value.$validate();
     if(result){
         authStore.signup(state);
+        router.push('/')
     }
 }
 

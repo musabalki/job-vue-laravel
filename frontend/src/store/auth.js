@@ -35,7 +35,9 @@ export const useAuthStore = defineStore('authStore', {
                 const res = await axios.post("http://localhost:8000/api/register",user,{'headers':{'Accept':'application/json'}});
                 this.auth = res.data.user 
                 this.loading=false
-                console.log(this.auth)
+                this.router.push('/');
+                const toast = useToast();
+                toast.success("Kayıt başarılı", { timeout: 1500 });
             }catch(err){
                 console.log("Error:", err.response.data.message)
                 //console.log(err.response.data.errors)
