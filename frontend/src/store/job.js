@@ -12,6 +12,20 @@ export const useJobStore = defineStore('job', {
         }
     },
     actions: {
+        addJob(job){
+            
+            // axios.post( '/single-file',
+            //     job,
+            //     {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     }
+            //     }
+            // ).then(function(){
+            //this.jobs.push(job)
+            // })
+            
+        },
         getDetailData(id) {
             const index = this.jobs.findIndex(job => job.id == id);
             if (index == -1) {

@@ -101,7 +101,7 @@ const onSubmit = async () => {
     const result = await v$.value.$validate();
     if(result){
         authStore.signup(state);
-        router.push('/')
+        //router.push('/')
     }
 }
 

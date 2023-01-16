@@ -31,22 +31,25 @@ export const useAuthStore = defineStore('authStore', {
         },
         async signup(user){
             this.loading=true;
+            const toast = useToast();
+
             try{
                 const res = await axios.post("http://localhost:8000/api/register",user,{'headers':{'Accept':'application/json'}});
                 this.auth = res.data.user 
                 this.loading=false
-                this.router.push('/');
-                const toast = useToast();
+                this.router.push('/login');
                 toast.success("Kayıt başarılı", { timeout: 1500 });
             }catch(err){
-                console.log("Error:", err.response.data.message)
+                //console.log("Error:", err.response.data.message)
                 //console.log(err.response.data.errors)
                 this.loading=false;
                 this.errors=err.response.data.message
+                toast.error("Kayıt başarısız", { timeout: 1500 });
               
             }
         },
         async login(user){
+            const toast = useToast();
             
             this.loading=true;
             this.errors="";
@@ -58,7 +61,6 @@ export const useAuthStore = defineStore('authStore', {
                 localStorage.setItem('token',res.data.token);
                 localStorage.setItem('user',JSON.stringify(res.data.user));
                 this.router.push('/');
-                const toast = useToast();
                 toast.success("Giriş yapıldı", { timeout: 1500 });
                 console.log(res.data)
                
@@ -67,6 +69,7 @@ export const useAuthStore = defineStore('authStore', {
                 console.log(err.response.data.errors)
                 this.loading=false;
                 this.errors=err.response.data.message
+                toast.error("Giriş başarısız", { timeout: 1500 });
                 
             }
         },
