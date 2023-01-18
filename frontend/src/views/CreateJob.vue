@@ -64,6 +64,7 @@
 <script setup>
 import {reactive} from "vue"
 import {ref} from "vue"
+import { useJobStore } from "../store/job";
 
 const loading = ref(0)
 const job=reactive({
@@ -76,8 +77,8 @@ const job=reactive({
     url:"tes",
 })
 const submit = () => {
-  
-    console.log(job)
+  const store = useJobStore();
+  store.addJob(job);
  
 }
 function onFileChanged(event){

@@ -35,7 +35,19 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $create = Job::create([
+            "title"=>$request->title,
+            "salary"=>$request->salary,
+            "work_type"=>$request->workType,
+            "description"=>$request->detail,
+            "image"=>$request->url,
+            "slug"=>\Str::slug($request->title)
+        ]);
+        if($create){
+            return response()->json(["message"=>"success","data"=>$create]);
+        }
+
+        return response()->json(["message"=>"error"]);
     }
 
     /**

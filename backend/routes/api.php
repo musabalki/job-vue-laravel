@@ -29,7 +29,7 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/jobs',[JobController::class,'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-   
+    Route::post('/jobs',[JobController::class,'store']);
     // Route::post('/logout',[AuthController::class,'logout']);
     // Route::get('/products',[ProductController::class,'index']);
     // Route::post('/products',[ProductController::class,'store']);

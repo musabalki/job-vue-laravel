@@ -13,17 +13,21 @@ export const useJobStore = defineStore('job', {
     },
     actions: {
         addJob(job){
-            
-            // axios.post( '/single-file',
-            //     job,
-            //     {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            //     }
-            // ).then(function(){
-            //this.jobs.push(job)
-            // })
+            const store = useAuthStore();
+
+            axios.post( 'http://localhost:8000/api/jobs', job,
+                {
+                    headers:{
+                        "Authorization":`Bearer ${store.getToken}`,
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
+            ).then(function(res){
+                console.log(res)
+                //this.jobs.push(job)
+            }).catch(err=>{
+                console.log(err.response.data.message)
+            })
             
         },
         getDetailData(id) {
