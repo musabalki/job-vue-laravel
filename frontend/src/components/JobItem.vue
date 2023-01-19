@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <router-link :to="{ name: 'detail', params: { id: item.id } }" class="bg-indigo-600 rounded py-2 text-white px-4 text-xs">Detail</router-link>
+        <router-link :to="{ name: 'detail', params: { slug: item.slug } }" class="bg-indigo-600 rounded py-2 text-white px-4 text-xs">Detail</router-link>
     </div>
 </template>
 <script setup>

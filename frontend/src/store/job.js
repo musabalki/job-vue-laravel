@@ -3,32 +3,38 @@ import { defineStore } from 'pinia'
 import Jobs from "./data.json"
 import axios from "axios"
 import { useAuthStore } from './auth'
-export const useJobStore = defineStore('job', {
-    state: () => {
-        return {
-            jobs: [],
-            loading: false,
-            detail: null,
-        }
-    },
-    actions: {
-        addJob(job){
-            const store = useAuthStore();
+import { useToast } from 'vue-toastification'
 
-            axios.post( 'http://localhost:8000/api/jobs', job,
-                {
+
+export const useJobStore = defineStore('job', {
+    state: () => ({
+        jobs: [],
+        loading: false,
+        detail: null,
+    }),
+    actions: {
+        async addJob(job){
+          
+            const store = useAuthStore();
+            const toast = useToast();
+        
+            const res = await axios.post( 'http://localhost:8000/api/jobs', job,{
                     headers:{
-                        "Authorization":`Bearer ${store.getToken}`,
-                        "Content-Type": "multipart/form-data"
+                        "Authorization":`Bearer ${store.getToken}`
                     }
                 }
-            ).then(function(res){
-                console.log(res)
-                //this.jobs.push(job)
-            }).catch(err=>{
-                console.log(err.response.data.message)
-            })
+            )
             
+            this.jobs.push(res.data.data)
+            console.log(res.data.data)
+            toast.success("İlan eklendi.");
+            this.detail="";
+            await this.router.push("/")
+
+            // setTimeout(()=>{
+            //     this.router.push("/")
+            // },2000)
+          
         },
         getDetailData(id) {
             const index = this.jobs.findIndex(job => job.id == id);

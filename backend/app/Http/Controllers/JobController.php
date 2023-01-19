@@ -39,7 +39,8 @@ class JobController extends Controller
             "title"=>$request->title,
             "salary"=>$request->salary,
             "work_type"=>$request->workType,
-            "description"=>$request->detail,
+            "description"=>"test",
+            "info"=>$request->description,
             "image"=>$request->url,
             "slug"=>\Str::slug($request->title)
         ]);

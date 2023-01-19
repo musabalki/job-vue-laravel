@@ -21,7 +21,7 @@ const routes = [
                 component: HomePage
             },
             {
-                path: '/detail/:id',
+                path: 'detail/:slug',
                 name: 'detail',
                 component: Detail
             },
@@ -52,13 +52,17 @@ const routes = [
         name: 'createjob',
         component: CreateJob
     },
-    { path: '/:pathMatch(.*)*',name:"notfound", component: NotFound }
+    { 
+        path: '/:pathMatch(.*)*',
+        name:"notfound", 
+        component: NotFound 
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),
     routes
 })
-// GOOD
+
 router.beforeEach((to, from, next) => {
     const store = useAuthStore();
     const token = localStorage.getItem('token')

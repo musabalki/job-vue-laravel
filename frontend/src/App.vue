@@ -2,9 +2,7 @@
   <div class="bg-gray-50 p-6 min-h-screen">
     <div class="max-w-[1100px] mx-auto">
       <Header/>
-      <router-view></router-view>
-     
-      
+      <router-view></router-view>      
     </div>
   </div>
 

@@ -38,7 +38,7 @@
                     <label for="detail"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detail</label>
                         <!-- <textarea  class=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="" id="" cols="30" rows="5"></textarea> -->
-                        <QuillEditor v-model="job.detail" style="height:300px"  theme="snow" />
+                        <QuillEditor ref="editor" style="height:300px"  theme="snow" />
                 </div>
                 
                 
@@ -68,14 +68,16 @@ import { useJobStore } from "../store/job";
 
 const loading = ref(0)
 const job=reactive({
-    title:"",
-    salary:"",
-    description:"",
+    title:" ",
+    salary:" ",
+    description:" ",
     workType:0,
-    detail:"",
-    image:"",
-    url:"tes",
+    detail:"test ",
+    image:" ",
+    url:" ",
 })
+const editor = ref()
+
 const submit = () => {
   const store = useJobStore();
   store.addJob(job);
