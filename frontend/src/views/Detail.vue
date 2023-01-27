@@ -19,11 +19,12 @@ import { useRoute } from 'vue-router';
 import {useJobStore} from "../store/job.js"
 
 const route = useRoute()
-const {id} = route.params;
+const {slug} = route.params;
 const store = useJobStore();
 
 const {getDetailData} = store;
-getDetailData(id)
+getDetailData(slug)
+
 
 const {detail} = storeToRefs(store)
 

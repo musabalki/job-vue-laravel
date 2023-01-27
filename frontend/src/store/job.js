@@ -11,8 +11,18 @@ export const useJobStore = defineStore('job', {
         jobs: [],
         loading: false,
         detail: null,
+        saved:[]
     }),
+    getters:{
+        findSave(){
+            
+        }
+    },
     actions: {
+        addSaveJob(item){
+            this.saved.push(item)
+            console.log(this.saved)
+        },
         async addJob(job){
           
             const store = useAuthStore();
@@ -37,7 +47,8 @@ export const useJobStore = defineStore('job', {
           
         },
         getDetailData(id) {
-            const index = this.jobs.findIndex(job => job.id == id);
+            const index = this.jobs.findIndex(job => job.slug == id);
+            
             if (index == -1) {
                 this.detail = {
                     id: "",
@@ -48,7 +59,8 @@ export const useJobStore = defineStore('job', {
                     image: "",
                     type: "",
                     salary: "",
-                    info: ""
+                    info: "",
+                    save:0
                 }
             }
             else {

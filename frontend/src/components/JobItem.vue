@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-between bg-white p-6 rounded-lg">
         <div class="flex items-center">
-            <div class="mr-5">
+            <div class="mr-5" @click="save(item)">
                 <i class="cursor-pointer text-2xl fa-regular fa-bookmark"></i>
             </div>
             <img class="w-12 rounded-full mr-4" :src="item.image" alt="">
@@ -22,5 +22,10 @@
     </div>
 </template>
 <script setup>
-defineProps({item:Object})
+import { useJobStore } from '../store/job';
+const store = useJobStore();
+const props = defineProps({item:Object})
+const save = () =>{
+    store.addSaveJob(props.item);
+}
 </script>
