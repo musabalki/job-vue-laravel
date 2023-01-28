@@ -11,13 +11,8 @@ export const useJobStore = defineStore('job', {
         jobs: [],
         loading: false,
         detail: null,
-        saved:[]
+        saved:[1,3,5]
     }),
-    getters:{
-        findSave(){
-            
-        }
-    },
     actions: {
         addSaveJob(item){
             this.saved.push(item)
