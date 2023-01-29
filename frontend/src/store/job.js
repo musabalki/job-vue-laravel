@@ -11,9 +11,13 @@ export const useJobStore = defineStore('job', {
         jobs: [],
         loading: false,
         detail: null,
-        saved:[1,3,5]
+        saved:[1,3,5],
+        totalCount:0,
     }),
     actions: {
+        updateCurrentPage(page){
+            this.currentPage=page
+        },
         addSaveJob(item){
             this.saved.push(item)
             console.log(this.saved)
@@ -62,14 +66,19 @@ export const useJobStore = defineStore('job', {
                 this.detail = this.jobs[index]
             }
         },
-        async getJobs() {
+        async getJobs(offset=0,limit=5) {
             this.loading = true;
             const authStore = useAuthStore();
             try {
-                const res = await axios.get("http://localhost:8000/api/jobs",{headers:{
+                // const res = await axios.get("http://localhost:8000/api/jobs",{headers:{
+                //     'Authorization':`Bearer ${authStore.getToken}`
+                // }});
+                const res = await axios.get(`http://localhost:8000/api/paginate/${offset*limit}/${limit}`,{headers:{
                     'Authorization':`Bearer ${authStore.getToken}`
                 }});
-                this.jobs = res.data;
+                
+                this.jobs = res.data.data
+                this.totalCount = res.data.totalCount;
                 
             } catch (err) {
                 console.log("Error:",err)

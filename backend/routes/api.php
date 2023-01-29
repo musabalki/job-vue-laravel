@@ -28,6 +28,9 @@ Route::post('/login',[AuthController::class,'login']);
 
 Route::get('/jobs',[JobController::class,'index']);
 
+                
+Route::get('/paginate/{offset}/{limit}',[JobController::class,'pagination']);
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/jobs',[JobController::class,'store']);
     // Route::post('/logout',[AuthController::class,'logout']);

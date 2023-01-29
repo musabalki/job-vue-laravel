@@ -1,11 +1,11 @@
 <template>
     <div class="mx-auto container">
         <div class="grid grid-cols-12">
-          <div class="col-span-3">
+          <div class="md:col-span-3 hidden md:block">
             <WorkingType/>
             <Skills/>
           </div>
-          <div class="col-span-9 space-y-4 ml-5">
+          <div class="md:col-span-9 col-span-12 space-y-4 md:ml-5">
             <router-view></router-view>
           </div>
         </div>

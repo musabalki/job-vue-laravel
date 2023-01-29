@@ -1,16 +1,15 @@
 <template>
     <div class="flex items-center justify-between bg-white p-6 rounded-lg">
-        <div class="flex items-center">
-            <div class="mr-5" @click="save(item)">
+        <div class="flex  items-center">
+            <div class="hidden md:block mr-5" @click="save(item)">
                 <div v-if="deneme(props.item)!=1">
                     <i class="cursor-pointer text-2xl fa-regular fa-bookmark"></i>
                 </div>
                 <div v-else-if="deneme(props.item)==1">
                     <i class="cursor-pointer text-2xl fa-regular fa-solid fa-bookmark"></i>
                 </div>
-                
             </div>
-            <img class="w-12 rounded-full mr-4" :src="item.image" alt="">
+            <img class="hidden md:block w-12 rounded-full mr-4" :src="item.image" alt=""/>
             <div class="flex flex-col items-start">
                 <h1 href="" class="font-medium">{{item.title }}</h1>
                 <span class="text-sm text-gray-400">{{ item.info }}</span>
@@ -34,15 +33,12 @@ import { useJobStore } from '../store/job';
 const store = useJobStore();
 const props = defineProps({item:Object})
 
-
 const deneme = (p) =>{
     const res = store.saved.find(s=>s==p.id)
-    console.log("ilk")
     if(res){
         return 1;
     }
-
-    return res;
+    return 0;
 }
 
 const save = () =>{

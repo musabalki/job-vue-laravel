@@ -27,7 +27,7 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div :class="!data ? 'hidden' : 'block' " class=" absolute right-0 z-20 w-60 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+                        <div :class="!data ? 'hidden' : 'block' " id="d-menu" class=" absolute right-0 z-20 w-60 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
                             <a href="#"
                                 class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"

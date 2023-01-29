@@ -10,19 +10,58 @@
         <span class="loader"></span>
     </div>
     <JobItem v-if="jobs.length > 0" v-for="item in jobs" :item="item" />
-   
+    <div v-if="jobs.length>0" class="flex justify-center">
+        <vue-awesome-paginate
+        :total-items="store.totalCount"
+        :items-per-page="5"
+        :max-pages-shown="5"
+        v-model="currentPage"
+        :on-click="onClickHandler"
+    />
+    </div>
+    
 </template>
 <script setup>
 import JobItem from "./JobItem.vue"
 import { useJobStore } from "../store/job.js"
-import { onMounted, computed } from "vue";
+import { onMounted, computed, ref} from "vue";
 import { storeToRefs } from 'pinia'
 
 const { jobs, loading } = storeToRefs(useJobStore())
 const store = useJobStore();
+const currentPage = ref(1);
+
+const onClickHandler = async (page) => {
+    currentPage.value=page
+    store.updateCurrentPage(page)
+    await store.getJobs(page-1)
+};
 
 onMounted(async () => {
     await store.getJobs()
 })
 
 </script>
+<style>
+ .pagination-container {
+    display: flex;
+    column-gap: 10px;
+  }
+  .paginate-buttons {
+    height: 28px;
+    width: 28px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: rgb(242, 242, 242);
+    border: 1px solid rgb(217, 217, 217);
+    color: black;
+    font-size: 12px;
+  }
+  .paginate-buttons:hover {
+    background-color: #d8d8d8;
+  }
+  .active-page {
+    background-color: #4f46e5 !important;
+    color: white;
+  }
+  </style>

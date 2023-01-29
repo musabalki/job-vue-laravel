@@ -7,6 +7,12 @@ use App\Models\Job;
 
 class JobController extends Controller
 {
+    public function pagination($offset=0,$limit=5){
+        $count = Job::count();
+        $data = Job::offset($offset)->limit($limit)->orderByDesc('created_at')->get();
+        return response()->json(["totalCount"=>$count,"data"=>$data]);
+        
+    }
     /**
      * Display a listing of the resource.
      *

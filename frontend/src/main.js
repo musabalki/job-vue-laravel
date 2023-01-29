@@ -10,6 +10,8 @@ import "vue-toastification/dist/index.css";
 
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
 
 
 
@@ -21,7 +23,7 @@ app.component('QuillEditor', QuillEditor)
 pinia.use(({ store }) => {
     store.router = markRaw(router)
   })
-
+app.use(VueAwesomePaginate);
 app.use(Toast);
 app.use(pinia)
 app.use(router)
