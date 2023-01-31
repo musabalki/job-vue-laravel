@@ -13,7 +13,21 @@ export const useJobStore = defineStore('job', {
         detail: null,
         saved:[1,3,5],
         totalCount:0,
+        currentPage:0,
+        typeJob:[]
     }),
+    getters:{
+        
+        // getFreelance(){
+        //     return "type"
+        // },
+        // getPartTime(){
+        //     return this.jobs
+        // },
+        // getFullTime(){
+
+        // }
+    },
     actions: {
         updateCurrentPage(page){
             this.currentPage=page
@@ -67,23 +81,40 @@ export const useJobStore = defineStore('job', {
             }
         },
         async getJobs(offset=0,limit=5) {
-            this.loading = true;
+            this.loading=true;
+            console.log(this.loading)
             const authStore = useAuthStore();
             try {
+               
                 // const res = await axios.get("http://localhost:8000/api/jobs",{headers:{
                 //     'Authorization':`Bearer ${authStore.getToken}`
                 // }});
                 const res = await axios.get(`http://localhost:8000/api/paginate/${offset*limit}/${limit}`,{headers:{
                     'Authorization':`Bearer ${authStore.getToken}`
                 }});
-                
                 this.jobs = res.data.data
-                this.totalCount = res.data.totalCount;
+                this.totalCount=res.data.totalCount
+                this.loading = false;
+                console.log(this.loading)
+            } catch (err) {
+                console.log("Error:",err)
+                
+            this.loading = false;
+            }
+        },
+        async getType(type){
+            try {
+                const authStore = useAuthStore();
+                const res = await axios.post(`http://localhost:8000/api/getType`,{type},{headers:{
+                    'Authorization':`Bearer ${authStore.getToken}`
+                }});
+                this.typeJob = res.data.data
                 
             } catch (err) {
                 console.log("Error:",err)
-            }
+                
             this.loading = false;
-        },
+            }
+        }
     },
 })

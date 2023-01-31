@@ -7,11 +7,28 @@ use App\Models\Job;
 
 class JobController extends Controller
 {
+    public function getType(Request $request){
+        $type=0;
+        if($request->type=="freelance"){
+            $type = 3;
+        }
+        else if($request->type=="full-time"){
+            $type = 1;
+        }
+        else if($request->type==="part-time"){
+            $type = 2;
+        }
+        else{
+            return response()->json(["message"=>"Invalid type"]);
+        }
+        $data = Job::where('work_type',$type)->orderByDesc('created_at')->get();
+        return response()->json(["data"=>$data]);
+        
+    }
     public function pagination($offset=0,$limit=5){
         $count = Job::count();
         $data = Job::offset($offset)->limit($limit)->orderByDesc('created_at')->get();
-        return response()->json(["totalCount"=>$count,"data"=>$data]);
-        
+        return response()->json(["totalCount"=>$count,"data"=>$data]);   
     }
     /**
      * Display a listing of the resource.

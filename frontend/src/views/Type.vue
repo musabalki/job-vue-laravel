@@ -6,39 +6,26 @@
             <input type="text" placeholder="Search" class="w-full rounded-lg py-3 px-2 outline-none text-sm">
         </div>
     </div>
-    <div v-if="loading && jobs.length == 0" class="text-center">
+    <div v-if="loading && typeJob.length == 0" class="text-center">
         <span class="loader"></span>
     </div>
-    <JobItem v-if=" jobs.length > 0" v-for="item in jobs" :item="item" />
-    <div v-if="jobs.length>0" class="flex justify-center">
-        <vue-awesome-paginate
-        :total-items="store.totalCount"
-        :items-per-page="5"
-        :max-pages-shown="5"
-        v-model="currentPage"
-        :on-click="onClickHandler"
-    />
-    </div>
-    
+    <JobItem v-if=" typeJob.length > 0" v-for="item in typeJob" :item="item" />
 </template>
 <script setup>
-import JobItem from "./JobItem.vue"
+import JobItem from "../components/JobItem.vue"
 import { useJobStore } from "../store/job.js"
 import { onMounted, computed, ref} from "vue";
 import { storeToRefs } from 'pinia'
+import { useRoute } from "vue-router";
 
-const { jobs, loading } = storeToRefs(useJobStore())
+const { typeJob, loading } = storeToRefs(useJobStore())
 const store = useJobStore();
 const currentPage = ref(1);
+const route = useRoute();
 
-const onClickHandler = async (page) => {
-    currentPage.value=page
-    store.updateCurrentPage(page)
-    await store.getJobs(page-1)
-};
 
 onMounted(async () => {
-    await store.getJobs()
+    await store.getType(route.params.type)
 })
 
 </script>

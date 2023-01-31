@@ -8,6 +8,7 @@ import NotFound from './views/NotFound.vue'
 import Profile from './views/Profile.vue'
 import CreateJob from './views/CreateJob.vue'
 import SavedJobs from './views/SavedJobs.vue'
+import Type from './views/Type.vue'
 import {useAuthStore} from "./store/auth.js"
 const routes = [
     {
@@ -24,6 +25,18 @@ const routes = [
                 path: 'detail/:slug',
                 name: 'detail',
                 component: Detail
+            },
+        ]
+    },
+    {
+        path: '/categories',
+        name: 'categories',
+        component: HomeLayout,
+        children:[
+            {
+                path: ':type',
+                name: 'type',
+                component: Type
             },
         ]
     },
