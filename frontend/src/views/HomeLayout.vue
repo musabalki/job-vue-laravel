@@ -6,7 +6,7 @@
             <Skills/>
           </div>
           <div class="md:col-span-9 col-span-12 space-y-4 md:ml-5">
-            <router-view></router-view>
+            <router-view :key="$route.fullPath"></router-view>
           </div>
         </div>
       </div>

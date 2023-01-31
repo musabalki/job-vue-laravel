@@ -21,7 +21,7 @@ class JobController extends Controller
         else{
             return response()->json(["message"=>"Invalid type"]);
         }
-        $data = Job::where('work_type',$type)->orderByDesc('created_at')->get();
+        $data = Job::where('work_type',$type)->limit(5)->orderByDesc('created_at')->get();
         return response()->json(["data"=>$data]);
         
     }

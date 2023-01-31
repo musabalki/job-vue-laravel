@@ -1,20 +1,19 @@
 <template>
-    
     <div class="rounded-lg bg-white">
         <div class="flex items-center">
             <i class="pl-4 fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search" class="w-full rounded-lg py-3 px-2 outline-none text-sm">
         </div>
     </div>
-    <div v-if="loading && typeJob.length == 0" class="text-center">
+    <div v-if="loading " class="text-center">
         <span class="loader"></span>
     </div>
-    <JobItem v-if=" typeJob.length > 0" v-for="item in typeJob" :item="item" />
+    <JobItem v-if="loading==false && typeJob.length > 0" v-for="item in typeJob" :item="item" />
 </template>
 <script setup>
 import JobItem from "../components/JobItem.vue"
 import { useJobStore } from "../store/job.js"
-import { onMounted, computed, ref} from "vue";
+import { onMounted, computed, ref, watch} from "vue";
 import { storeToRefs } from 'pinia'
 import { useRoute } from "vue-router";
 
@@ -23,6 +22,10 @@ const store = useJobStore();
 const currentPage = ref(1);
 const route = useRoute();
 
+const typ = ref(route.params.type)
+watch(route.params.type,(oldd,neww)=>{
+    console.log(2)
+})
 
 onMounted(async () => {
     await store.getType(route.params.type)

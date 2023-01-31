@@ -104,12 +104,13 @@ export const useJobStore = defineStore('job', {
         },
         async getType(type){
             try {
+                this.loading=true;
                 const authStore = useAuthStore();
                 const res = await axios.post(`http://localhost:8000/api/getType`,{type},{headers:{
                     'Authorization':`Bearer ${authStore.getToken}`
                 }});
                 this.typeJob = res.data.data
-                
+                this.loading = false;
             } catch (err) {
                 console.log("Error:",err)
                 
