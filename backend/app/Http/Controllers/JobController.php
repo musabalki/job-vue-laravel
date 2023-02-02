@@ -7,6 +7,10 @@ use App\Models\Job;
 
 class JobController extends Controller
 {
+    public function search(Request $request){
+        $data = Job::where('title','like','%'.$request->data.'%')->get();
+        return response()->json($data);
+    }
     public function getType(Request $request){
         $type=0;
         if($request->type=="freelance"){

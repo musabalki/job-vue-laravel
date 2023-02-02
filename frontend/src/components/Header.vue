@@ -2,7 +2,7 @@
     <div class="mx-auto container mb-4 ">
         <div class="grid grid-cols-12 items-center justify-between">
             <div class="col-span-3 ">
-                <router-link to="/" class="block text-2xl font-bold text-center">Job</router-link>
+                <router-link to="/" class="block text-3xl font-bold text-center">Job</router-link>
                 <span class="text-gray-500 text-sm text-center block">Find job</span>
             </div>
             <div class="col-span-9 flex justify-end items-center ml-5 rounded-lg">
@@ -15,10 +15,10 @@
                    
                     <div v-if="user" class="relative inline-block ">
                         <!-- Dropdown toggle button -->
-                        <button @click="toggle()"
+                        <button  id="c-button"
                             class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
-                            <span class="mx-1">{{store.getUser.name}}</span>
-                            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
+                            <span class="pointer-events-none	 mx-1">{{store.getUser.name}}</span>
+                            <svg class="pointer-events-none	 w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
@@ -40,15 +40,15 @@
 
                             <hr class="border-gray-200 dark:border-gray-700 ">
 
-                            <router-link to="profile"
+                            <router-link to="/profile"
                                 class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 view profile
                             </router-link>
 
-                            <router-link to="saved-jobs"
+                            <!-- <router-link to="saved-jobs"
                                 class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 Saved Jobs
-                            </router-link>
+                            </router-link> -->
 
                             <router-link to="/create-job"
                                 class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -69,6 +69,25 @@
     </div>
 
 </template>
+<script>
+      window.onload = (event) => {
+        const reload = document.querySelector("#c-button");
+        let content = document.querySelector('.popup-content');
+        let popup = document.querySelector('#d-menu');
+        let button = document.querySelector('button');
+
+        button.onclick = () => {
+          popup.style.display = 'block';
+
+        }
+
+        window.onclick = e => {
+          if (e.target != button) {
+            popup.style.display = 'none';
+          }
+        }
+      };
+    </script>
 <script setup>
 import {ref,computed,onMounted} from "vue"
 import {useAuthStore} from "../store/auth"

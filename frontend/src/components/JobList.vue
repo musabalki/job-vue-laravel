@@ -3,13 +3,16 @@
     <div class="rounded-lg bg-white">
         <div class="flex items-center">
             <i class="pl-4 fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search" class="w-full rounded-lg py-3 px-2 outline-none text-sm">
+            <input type="text" placeholder="Search"  @keyup.enter="submit" class="w-full rounded-lg py-3 px-2 outline-none text-sm">
         </div>
     </div>
-    <div v-if="loading && jobs.length == 0" class="text-center">
+    <div v-if="loading && jobs.length == 0 || searchLoading ==true" class="text-center">
         <span class="loader"></span>
     </div>
     <JobItem v-if=" jobs.length > 0" v-for="item in jobs" :item="item" />
+      <div v-if="loading==false && jobs.length==0" class="text-center bg-red-100 text-red-500 font-semibold rounded px-4 py-2">
+      Not found
+    </div>
     <div v-if="jobs.length>0" class="flex justify-center">
         <vue-awesome-paginate
         :total-items="store.totalCount"
@@ -27,7 +30,7 @@ import { useJobStore } from "../store/job.js"
 import { onMounted, computed, ref} from "vue";
 import { storeToRefs } from 'pinia'
 
-const { jobs, loading } = storeToRefs(useJobStore())
+const { jobs, loading,searchLoading } = storeToRefs(useJobStore())
 const store = useJobStore();
 const currentPage = ref(1);
 
@@ -40,7 +43,9 @@ const onClickHandler = async (page) => {
 onMounted(async () => {
     await store.getJobs()
 })
-
+const submit = (e) =>{
+  store.searchJob(e.target.value)
+}
 </script>
 <style>
  .pagination-container {

@@ -9,6 +9,9 @@
         <span class="loader"></span>
     </div>
     <JobItem v-if="loading==false && typeJob.length > 0" v-for="item in typeJob" :item="item" />
+    <div v-if="loading==false && typeJob.length==0" class="text-center bg-red-100 text-red-500 font-semibold rounded px-4 py-2">
+      Not found
+    </div>
 </template>
 <script setup>
 import JobItem from "../components/JobItem.vue"

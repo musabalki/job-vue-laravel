@@ -14,7 +14,9 @@ export const useJobStore = defineStore('job', {
         saved:[1,3,5],
         totalCount:0,
         currentPage:0,
-        typeJob:[]
+        typeJob:[],
+        search:[],
+        searchLoading:false
     }),
     getters:{
         
@@ -29,18 +31,30 @@ export const useJobStore = defineStore('job', {
         // }
     },
     actions: {
+        async searchJob(text){
+            this.searchLoading=true;
+            const store = useAuthStore();
+            const res = await axios.post( 'http://localhost:8000/api/search', {data:text},{
+                headers:{
+                    "Authorization":`Bearer ${store.getToken}`
+                }
+            })
+            this.searchLoading=false
+            this.jobs=res.data;
+       
+        },
         updateCurrentPage(page){
             this.currentPage=page
         },
-        addSaveJob(item){
-            this.saved.push(item)
-            console.log(this.saved)
-        },
+        // addSaveJob(item){
+        //     this.saved.push(item)
+        //     console.log(this.saved)
+        // },
         async addJob(job){
           
             const store = useAuthStore();
             const toast = useToast();
-        
+            
             const res = await axios.post( 'http://localhost:8000/api/jobs', job,{
                     headers:{
                         "Authorization":`Bearer ${store.getToken}`
@@ -49,15 +63,11 @@ export const useJobStore = defineStore('job', {
             )
             
             this.jobs.push(res.data.data)
-            console.log(res.data.data)
+         
             toast.success("İlan eklendi.");
             this.detail="";
             await this.router.push("/")
 
-            // setTimeout(()=>{
-            //     this.router.push("/")
-            // },2000)
-          
         },
         getDetailData(id) {
             const index = this.jobs.findIndex(job => job.slug == id);

@@ -7,9 +7,10 @@
                     <span v-else-if="detail.work_type==2" class=" font-medium text-xs bg-rose-100 text-rose-500 px-3 py-1  rounded-lg inline-block 	">Part-time</span>
                     <span v-else-if="detail.work_type==3" class=" font-medium text-xs bg-amber-100 text-amber-500 px-3 py-1  rounded-lg inline-block">Freelance</span>
         </div>
-        <div>
-            {{ detail.description }}
+        <div v-html="detail.description">
         </div>
+       
+        
     </div>
 </template>
 <script setup>
