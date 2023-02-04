@@ -55,7 +55,7 @@
 import { useAuthStore } from '../store/auth';
 import { reactive,computed,ref } from "vue"
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength,sameAs } from '@vuelidate/validators'
+import { required, email, minLength,sameAs, helpers} from '@vuelidate/validators'
 
 const authStore = useAuthStore();
 
@@ -70,8 +70,8 @@ const state = reactive({
 
 const rules = computed(()=>{
    return {
-    email: { required, email },
-    password: { required, minLength: minLength(5) },
+    email: { required:helpers.withMessage('Email is required', required), email },
+    password: { required:helpers.withMessage('Password is required', required), minLength: minLength(5) },
 }
 })
 

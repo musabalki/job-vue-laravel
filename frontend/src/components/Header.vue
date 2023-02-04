@@ -70,23 +70,7 @@
 
 </template>
 <script>
-      window.onload = (event) => {
-        const reload = document.querySelector("#c-button");
-        let content = document.querySelector('.popup-content');
-        let popup = document.querySelector('#d-menu');
-        let button = document.querySelector('button');
-
-        button.onclick = () => {
-          popup.style.display = 'block';
-
-        }
-
-        window.onclick = e => {
-          if (e.target != button) {
-            popup.style.display = 'none';
-          }
-        }
-      };
+   
     </script>
 <script setup>
 import {ref,computed,onMounted} from "vue"
@@ -98,10 +82,6 @@ const store = useAuthStore();
 
 const user = computed(()=>store.getToken)
 
-
-
-
-
 const toggle = () =>{
     console.log(data.value)
     data.value=!data.value
@@ -112,5 +92,18 @@ const logout = () =>{
     store.logout()
     router.push('/')
 }
+if(user){
+    window.onload = (event) => {
+        let popup = document.querySelector('#d-menu');
+        let button = document.querySelector('button');
 
+        button.onclick = () => {popup.style.display = 'block';}
+
+        window.onclick = e => {
+            if (e.target != button) {
+            popup.style.display = 'none';
+            }
+        }
+    };
+}
 </script>
