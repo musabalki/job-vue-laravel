@@ -34,7 +34,7 @@ export const useJobStore = defineStore('job', {
         async searchJob(text){
             this.searchLoading=true;
             const store = useAuthStore();
-            const res = await axios.post( 'http://localhost:8000/api/search', {data:text},{
+            const res = await axios.post( 'https://jobapi.musabalki.com/api/search', {data:text},{
                 headers:{
                     "Authorization":`Bearer ${store.getToken}`
                 }
@@ -55,7 +55,7 @@ export const useJobStore = defineStore('job', {
             const store = useAuthStore();
             const toast = useToast();
             
-            const res = await axios.post( 'http://localhost:8000/api/jobs', job,{
+            const res = await axios.post( 'https://jobapi.musabalki.com/api/jobs', job,{
                     headers:{
                         "Authorization":`Bearer ${store.getToken}`
                     }
@@ -99,7 +99,7 @@ export const useJobStore = defineStore('job', {
                 // const res = await axios.get("http://localhost:8000/api/jobs",{headers:{
                 //     'Authorization':`Bearer ${authStore.getToken}`
                 // }});
-                const res = await axios.get(`http://localhost:8000/api/paginate/${offset*limit}/${limit}`,{headers:{
+                const res = await axios.get(`https://jobapi.musabalki.com/api/paginate/${offset*limit}/${limit}`,{headers:{
                     'Authorization':`Bearer ${authStore.getToken}`
                 }});
                 this.jobs = res.data.data
@@ -116,7 +116,7 @@ export const useJobStore = defineStore('job', {
             try {
                 this.loading=true;
                 const authStore = useAuthStore();
-                const res = await axios.post(`http://localhost:8000/api/getType`,{type},{headers:{
+                const res = await axios.post(`https://jobapi.musabalki.com/api/getType`,{type},{headers:{
                     'Authorization':`Bearer ${authStore.getToken}`
                 }});
                 this.typeJob = res.data.data

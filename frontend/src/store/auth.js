@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('authStore', {
             const toast = useToast();
 
             try{
-                const res = await axios.post("http://localhost:8000/api/register",user,{'headers':{'Accept':'application/json'}});
+                const res = await axios.post("https://jobapi.musabalki.com/api/register",user,{'headers':{'Accept':'application/json'}});
                 this.auth = res.data.user 
                 this.loading=false
                 this.router.push('/login');
@@ -54,7 +54,7 @@ export const useAuthStore = defineStore('authStore', {
             this.loading=true;
             this.errors="";
             try{
-                const res = await axios.post("http://localhost:8000/api/login",user,{'headers':{'Accept':'application/json'}});
+                const res = await axios.post("https://jobapi.musabalki.com/api/login",user,{'headers':{'Accept':'application/json'}});
                 this.auth = res.data.user 
                 this.loading=false
                 this.token = res.data.token
