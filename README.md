@@ -33,7 +33,7 @@ Job Portal using Laravel + Vuejs
 <img src="6.PNG" width="100%"/>
 
 ### Create Job
-<img src="7.PNG" width="100%"/>
+<img src="7.png" width="100%"/>
 
 
 
